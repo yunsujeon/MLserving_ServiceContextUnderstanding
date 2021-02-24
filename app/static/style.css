@@ -2,7 +2,16 @@
     text-align: center;
 }
 
-.content1{
+/*.content1{*/
+/*    display: inline-block;*/
+/*    vertical-align: top;*/
+/*    text-align: center;*/
+/*    transition: all .15s ease-in-out;*/
+/*    width: 500px;*/
+/*    height: 300px;*/
+/*    background-color: darkgray;*/
+/*}*/
+#myform{
     display: inline-block;
     vertical-align: top;
     text-align: center;
@@ -10,7 +19,10 @@
     width: 500px;
     height: 300px;
     background-color: darkgray;
+    margin : 0;
+    padding : 0;
 }
+
 
 .content2{
     display: inline-block;
@@ -20,23 +32,10 @@
     width: 500px;
     height: 300px;
     background-color: darkgray;
+    outline: none;
+    background-size: 100% 100%;
 }
 
-#input1 {
-    vertical-align: top;
-}
 
-#output1 {
-    vertical-align : top;
-}
 
-#predictdigit {
-    width: 196px;
-    height: 196px;
-    line-height: 196px;
-    font-size: 160px;
-    border: solid 1px black;
-    background-color: white;
-    font-family: Century;
-}
 

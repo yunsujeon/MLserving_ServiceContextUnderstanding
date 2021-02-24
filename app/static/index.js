@@ -136,6 +136,10 @@
 
 //jQuery 라이브러리 이용
 
+function sleep(ms) {
+  const wakeUpTime = Date.now() + ms
+  while (Date.now() < wakeUpTime) {}
+}
 
 function dragOver(e) {
     e.stopPropagation();
@@ -153,7 +157,7 @@ function dragOver(e) {
     }
 }
 
-function uploadFiles(e) {
+async function uploadFiles(e) {
     e.stopPropagation();
     e.preventDefault();
     dragOver(e);
@@ -173,24 +177,32 @@ function uploadFiles(e) {
         });
         const formData = new FormData(document.getElementById('myform'));
         formData.append('image', files[0]);
-        fetch('/predict', {
+        const respond = await fetch('/predict', {
             method: 'POST',
-            body:formData
-        })
+            body: formData
+        });
+        console.log("waiting load image to output")
+        sleep(500)
+        console.log("waiting load image to output")
+
+        const uint8Array = (await respond.body.getReader().read()).value;
+        const image = new Blob([uint8Array], {type:'image/jpg'});
+        const url = URL.createObjectURL(image);
+        $('.content2').css({
+            "background-image": "url(" + url + ")"
+        });
     } else {
         alert('이미지가 아닙니다.');
         return;
     }
 }
 
-function displayimages(e) {
+// $('.content1')
+//     .on("dragover", dragOver)
+//     .on("dragleave", dragOver)
+//     .on("drop", uploadFiles);
 
-}
-
-$('.content1')
+$('#myform')
     .on("dragover", dragOver)
     .on("dragleave", dragOver)
     .on("drop", uploadFiles);
-
-$('.content2')
-    .on("display",displayimages);
