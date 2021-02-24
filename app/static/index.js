@@ -183,7 +183,6 @@ async function uploadFiles(e) {
         });
         console.log("waiting load image to output")
         sleep(500)
-        console.log("waiting load image to output")
 
         const uint8Array = (await respond.body.getReader().read()).value;
         const image = new Blob([uint8Array], {type:'image/jpg'});
