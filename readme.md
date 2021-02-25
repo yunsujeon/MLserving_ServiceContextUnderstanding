@@ -1,75 +1,73 @@
-# Train and Deploy Machine Learning Model With Web Interface - Docker, PyTorch & Flask
+# Machine Learning Serving
 
-Live access (deployed on GCP): https://ml-app.imadelhanafi.com
+Service Context Understanding with KFood DB
 
-![alt text](https://imadelhanafi.com/data/draft/capture_app_elhanafi.gif)
-
----
-
-Blog post: https://imadelhanafi.com/posts/train_deploy_ml_model/
-
-This repo contains code associated with the above blog post. 
-
-
-
-## Running on Local/cloud machine
-
-Clone the repo and build the docker image
-
-```
-sudo docker build -t flaskml .
-```
-
-NB: if you have MemoryError while installing PyTorch in the container, please consider adding 2G swap to your virtual machine (https://linuxize.com/post/how-to-add-swap-space-on-ubuntu-18-04/)
-
-Then after that you can run the container while specefying the absolute path to the app 
-
-```
-sudo docker run -i -t --rm -p 8888:8888 -v **absolute path to app directory**:/app flaskml
-```
-
-This will run the application on localhost:8888
-
-You can use serveo.net or Ngrok to port the application to the web.
-
-## Running on Jetson-Nano 
-
-On Jetson-nano, to avoid long running time to build the image, you can download it from Docker Hub. 
-We will also use a costumized Docker command https://gist.github.com/imadelh/cf7b12c9cc81c3cb95ad2c6bc747ccd0 to be able to access the GPU of the device on the container.
-
-```
-docker pull imadelh/jetson_pytorch_flask:arm_v1
-```
-
-Then on your device you can access the bash (this the default command on that image) 
-
-```
-sudo ./mydocker.sh run -i -t --rm -v /home/imad:/home/root/ imadelh/jetson_pytorch_flask:arm_v1
-
-```
-
-and then simply get to the application directory and run it
-
-```
-cd app
-python3 app.py
-```
-
-## Useful files 
-
-- Training and saving the CNN model : https://gist.github.com/imadelh/b337c7b16899831d80d9221a9a60e09f
-- Visualize the inference : https://colab.research.google.com/github/imadelh/ML-web-app/blob/master/Notebooks/emnist_inference_cnn-2.ipynb
-
-
-## Info
-
-This a generic web app for ML models. You can update your the network and weights by changing the following files. 
-
-```
-app/ml_model/network.py
-app/ml_model/trained_weights.pth
-```
-
+실행 gif
 
 ---
-Imad El Hanafi
+
+## Install
+1. Clone the Repo
+```
+git clone https://github.com/yunsujeon/MLserving_ServiceContextUnderstanding.git
+```
+
+2. Download model and **locate at app/output/**
+  [model_best.pth.tar](https://drive.google.com/file/d/123JNMX1n1LoxaTIuGy3K_9BYzfua6E7L/view?usp=sharing)
+  [faster_rcnn_1_7_9999.pth](https://drive.google.com/file/d/122ECul_6ByU2XrNUdSWlE7AB_zua--mf/view?usp=sharing)
+  [class_info_Kfood.pkl](https://drive.google.com/file/d/121GUhgUh4lsE_XhKneASHa3JXC5oBSvL/view?usp=sharing)
+  [class_info_FoodX251.pkl](https://drive.google.com/file/d/11ycaZIitI_ZK8dzvP0qaXKsoqosxOdAf/view?usp=sharing)
+  [class_info_Food101.pkl](https://drive.google.com/file/d/11srftNzO8Oxj1BwPhrvnYvDVE2ddPJCx/view?usp=sharing)
+
+## Running on Local machine with Anaconda
+
+1. Anaconda create and activate
+```
+conda create -n <name> python==3.6.2
+conda activate <name>
+```
+
+2. Install requirements
+```
+pip install -r requirements.txt
+```
+ 
+3. Run
+```
+python app.py
+```
+Go to http://0.0.0.0:8888 , then you can see wep page and explanation.
+
+
+## Running on Docker
+
+1. Install Docker your self
+
+2. Create Docker image by build Dockerfile
+```
+sudo docker build -t <image name> .
+or
+docker build -t <image name> .
+```
+
+3. Run docker file
+```
+docker run -i -t --rm -p 8888:8888 -v <your path>:/<docker path> --shm-size=2GB --gpus all <image name>
+ex)
+docker run -i -t --rm -p 8888:8888 -v /home/intern/MLserving/app:/app --shm-size=2GB --gpus all <image name>
+
+```
+If you need more memory in docker env, and select specific gpus ..
+--shm-size=8G
+--gpus '"device=0,1"'
+
+Go to http://0.0.0.0:8888, then you can see wep page and explanation.
+
+## Improvement
+
+You can run this codes at SSH server, Its all same this repo's local, docker examples
+
+But you will change the access url
+0.0.0:8888 -> [your remote server ip]:8888
+
+Enjoy this Repo. thank you.
