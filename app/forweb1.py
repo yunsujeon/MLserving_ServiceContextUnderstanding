@@ -1,3 +1,4 @@
+#-*-coding:utf-8-*-
 # --------------------------------------------------------
 # Tensorflow Faster R-CNN
 # Licensed under The MIT License [see LICENSE for details]

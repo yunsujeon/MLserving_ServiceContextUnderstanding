@@ -8,6 +8,7 @@ import subprocess
 from PIL import Image
 from scipy import misc
 import os
+import sys
 
 # declare constants
 HOST = '0.0.0.0'
@@ -23,9 +24,10 @@ def home():
 @app.route('/predict', methods=['GET', 'POST'])
 def predict():
     request.files['image'].save("./keeponeimage/one.jpg")  # 항상 같은이름으로 저장
-    subprocess.run(["python", "forweb1.py"])  # 현 폴더에 있는 사진 전부를 가져가서 추론한다. 하나만 존재하도록 관리할것
 
-    filename = './result.jpg'
+    subprocess.run(["python3", "forweb1.py"])  # 현 폴더에 있는 사진 전부를 가져가서 추론한다. 하나만 존재하도록 관리할것
+
+    filename = 'result.jpg'
     return send_file(filename, mimetype='image/jpg')
 
 

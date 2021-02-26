@@ -12,12 +12,12 @@ Service Context Understanding with KFood DB
 git clone https://github.com/yunsujeon/MLserving_ServiceContextUnderstanding.git
 ```
 
-2. Download model and **locate at app/output/**
-  [model_best.pth.tar](https://drive.google.com/file/d/123JNMX1n1LoxaTIuGy3K_9BYzfua6E7L/view?usp=sharing)
-  [faster_rcnn_1_7_9999.pth](https://drive.google.com/file/d/122ECul_6ByU2XrNUdSWlE7AB_zua--mf/view?usp=sharing)
-  [class_info_Kfood.pkl](https://drive.google.com/file/d/121GUhgUh4lsE_XhKneASHa3JXC5oBSvL/view?usp=sharing)
-  [class_info_FoodX251.pkl](https://drive.google.com/file/d/11ycaZIitI_ZK8dzvP0qaXKsoqosxOdAf/view?usp=sharing)
-  [class_info_Food101.pkl](https://drive.google.com/file/d/11srftNzO8Oxj1BwPhrvnYvDVE2ddPJCx/view?usp=sharing)
+2. Download model and **locate at app/output/**   
+  [model_best.pth.tar](https://drive.google.com/file/d/123JNMX1n1LoxaTIuGy3K_9BYzfua6E7L/view?usp=sharing)   
+  [faster_rcnn_1_7_9999.pth](https://drive.google.com/file/d/122ECul_6ByU2XrNUdSWlE7AB_zua--mf/view?usp=sharing)   
+  [class_info_Kfood.pkl](https://drive.google.com/file/d/121GUhgUh4lsE_XhKneASHa3JXC5oBSvL/view?usp=sharing)   
+  [class_info_FoodX251.pkl](https://drive.google.com/file/d/11ycaZIitI_ZK8dzvP0qaXKsoqosxOdAf/view?usp=sharing)   
+  [class_info_Food101.pkl](https://drive.google.com/file/d/11srftNzO8Oxj1BwPhrvnYvDVE2ddPJCx/view?usp=sharing)   
 
 ## Running on Local machine with Anaconda
 
@@ -57,9 +57,9 @@ ex)
 docker run -i -t --rm -p 8888:8888 -v /home/intern/MLserving/app:/app --shm-size=2GB --gpus all <image name>
 
 ```
-If you need more memory in docker env, and select specific gpus ..
---shm-size=8G
---gpus '"device=0,1"'
+If you need more memory in docker env, and select specific gpus ..   
+--shm-size=8G   
+--gpus '"device=0,1"'   
 
 Go to http://0.0.0.0:8888, then you can see wep page and explanation.
 
@@ -67,7 +67,7 @@ Go to http://0.0.0.0:8888, then you can see wep page and explanation.
 
 You can run this codes at SSH server, Its all same this repo's local, docker examples
 
-But you will change the access url
+But you will change the access url   
 0.0.0:8888 -> [your remote server ip]:8888
 
 Enjoy this Repo. thank you.
