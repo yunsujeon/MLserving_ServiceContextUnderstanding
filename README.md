@@ -2,7 +2,7 @@
 
 Service Context Understanding with KFood DB
 
-    <img src="./flask1.gif" width="900px" height="506px"></img><br/>
+<img src="./flask1.gif" width="900px" height="506px"></img><br/>
 
 
 ---
