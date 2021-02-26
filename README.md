@@ -6,6 +6,10 @@ Service Context Understanding with KFood DB
 
 
 ---
+## Required Software
+https://github.com/imadelh/ML-web-app  
+
+https://github.com/aai4r/aai4r-ServiceContextUnderstanding
 
 ## Install
 1. Clone the Repo
